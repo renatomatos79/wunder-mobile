@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.wunder.helpers.ConstantsHelper
@@ -30,26 +31,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
         loadUserData()
 
-        if (savedInstanceState != null){
-            loadLastFragment(savedInstanceState)
-        }
-
-
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//        setSupportActionBar(toolbar)
-//
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
-//        }
-//
-//        val toggle = ActionBarDrawerToggle(
-//                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-//        drawer_layout.addDrawerListener(toggle)
-//        toggle.syncState()
-//
-//        nav_view.setNavigationItemSelectedListener(this)
+        //if (savedInstanceState != null){
+        //    loadLastFragment(savedInstanceState);
+        //}
+        loadLastFragment(savedInstanceState)
     }
 
     fun hideNotificationBar(){
@@ -64,8 +49,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         lblUserName.setText("Renato Matos")
     }
 
-    fun loadLastFragment(savedInstanceState: Bundle){
-        val saved = savedInstanceState.getString(ConstantsHelper.BUNDLE_LAST_FRAGMENT)
+    fun loadLastFragment(savedInstanceState: Bundle?){
+
+        var cars = CarService.cars()
+
+        Toast.makeText(this, cars.toString(), Toast.LENGTH_LONG).show();
+
+        //val saved = savedInstanceState.getString(ConstantsHelper.BUNDLE_LAST_FRAGMENT)
         //lastFragment = FragmentModelHelper.stringToFragmentModel(saved)
 
         /*

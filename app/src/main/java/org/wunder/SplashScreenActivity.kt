@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import org.wunder.helpers.ActivityHelper.launchActitity
+import org.wunder.helpers.AppHelper
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -49,7 +50,10 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val btnStart = findViewById<Button>(R.id.btnStart);
         btnStart?.setOnClickListener(View.OnClickListener {
-            launchActitity(MainActivity::class.java);
+            if (AppHelper.valiatePermissions(this)){
+                launchActitity(MainActivity::class.java);
+            }
+
         })
     }
 

@@ -53,6 +53,6 @@ object ConstantsHelper {
     val ONE_HOUR: Long? = 60 * ONE_MINUTE!!
     val ONE_DAY: Long? = 24 * ONE_HOUR!!
 
-    val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.INTERNET, Manifest.permission.READ_PHONE_STATE)
 
 }
