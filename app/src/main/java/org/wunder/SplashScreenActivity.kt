@@ -14,8 +14,6 @@ import org.wunder.helpers.ActivityHelper.launchActitity
  */
 class SplashScreenActivity : AppCompatActivity() {
 
-    private var btnStart: Button? = null;
-
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -49,7 +47,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         mVisible = true
 
-        btnStart = findViewById<Button>(R.id.btnStart);
+        val btnStart = findViewById<Button>(R.id.btnStart);
         btnStart?.setOnClickListener(View.OnClickListener {
             launchActitity(MainActivity::class.java);
         })

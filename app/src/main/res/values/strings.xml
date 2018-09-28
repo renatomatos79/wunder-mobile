@@ -15,4 +15,106 @@
     <string name="label_start">Iniciar</string>
     <string name="label_urban_lift">Carona urbana</string>
     <string name="label_contact_email">renato.matos79@gmail.com</string>
+    <string name="nav_drawer_open">Abrir</string>
+    <string name="nav_drawer_close">Fechar</string>
+
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Início</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notificações</string>
+    <string name="title_settings">Configurações</string>
+    <string name="title_images">Imagens</string>
+    <string name="title_videos">Vídeos</string>
+    <string name="title_storage">Armazenamento</string>
+    <string name="title_displays">Displays</string>
+    <string name="title_change_password">Alterar senha</string>
+    <string name="title_image_settings">Imagem</string>
+    <string name="title_sync">Sincronismo</string>
+    <string name="title_store_select">Selecione uma loja</string>
+
+    <string name="label_device_id">Device ID</string>
+    <string name="label_device_name">Nome dispositivo</string>
+    <string name="label_model_name">Modelo</string>
+    <string name="label_sdk_version">Versão do SDK</string>
+    <string name="label_so_version">Versão do Sistema Operacional</string>
+    <string name="label_screen_size">Tamanho da tela</string>
+    <string name="label_registration_date">Data de registro</string>
+    <string name="label_store_name">Forma de armazenamento</string>
+    <string name="label_local_registration_date">Data do registro local</string>
+    <string name="label_serial_number">Número de Série</string>
+    <string name="label_active_date">Data de ativação</string>
+    <string name="label_device_server_id">Device ID no servidor</string>
+    <string name="label_password">Senha</string>
+    <string name="label_password_confirm">Confirmar senha</string>
+    <string name="label_next_step">Próximo passo: registrar este dispositivo.</string>
+    <string name="label_device_register">Registre seu dispositivo</string>
+    <string name="label_device_about">Sobre este dispositivo</string>
+    <string name="label_device_about_register">Sobre o registro deste dispositivo</string>
+    <string name="label_info_login">Este dispositivo só ficará disponível para uso após o registro e desbloqueio.</string>
+    <string name="label_storage_internal">Interno</string>
+    <string name="label_storage_memory_card">Cartão de Memória</string>
+    <string name="label_info_register_help">Este dispositivo não está registrado. Após o registro ainda será necessário habilitá-lo no servidor.</string>
+    <string name="label_info_not_registered">Este dispositivo ainda não foi registrado pelo servidor do aplicativo.</string>
+    <string name="label_info_is_registered">Este dispositivo já foi registrado e associado a uma loja no servidor do aplicativo.</string>
+    <string name="label_storage_type">Tipo de armazenamento</string>
+    <string name="label_store_id">Código da loja</string>
+    <string name="label_withoud_schedule">Sem Programação</string>
+    <string name="label_with_schedule">Programação</string>
+    <string name="label_app_version">Versão do aplicativo</string>
+    <string name="label_info_is_registered_but_not_sync">Este dispositivo já está registrado em nosso servidor. Toque em salvar para capturar os dados registrados.</string>
+    <string name="label_sync_display_internal">Intevalo para download dos displays (minutos)</string>
+    <string name="label_sync_weather_interval">Intevalo para atualização da temperatura (minutos)</string>
+    <string name="label_of">de</string>
+    <string name="label_image_scale_type_info">Como você deseja ajustar as imagens na tela</string>
+    <string name="label_scale_option">Tipo de Escala</string>
+    <string name="label_scale_option_centerInside">centerInside</string>
+
+    <string name="menu_user">Usuário</string>
+    <string name="menu_device">Dispositivo</string>
+
+    <string name="mni_perfil">Perfil</string>
+    <string name="mni_password">Senha</string>
+    <string name="mni_signout">Sair</string>
+    <string name="mni_device">Dispositivo</string>
+    <string name="mni_sync">Sincronizar</string>
+    <string name="mni_displays">Displays</string>
+    <string name="mni_rotate">Girar</string>
+    <string name="mni_storage">Armazenamento</string>
+    <string name="mni_image">Imagem</string>
+
+    <string name="dialog_loading_settings">Carregando dados do dispositivo</string>
+    <string name="dialog_loading">Carregando...</string>
+    <string name="dialog_authenticating">Autenticando...</string>
+    <string name="dialog_permissions_must_be_allowed">É necessário habilitar as permissões para este aplicativo!</string>
+    <string name="dialog_permissions_required">Permissões requeridas</string>
+    <string name="dialog_atention">Atenção</string>
+    <string name="dialog_password_required">Informe uma senha</string>
+    <string name="dialog_password_confirm_required">É necessário confirmar a senha</string>
+    <string name="dialog_password_changed">Senha alterada com sucesso</string>
+    <string name="dialog_device_not_registered_yet">Este dispositivo ainda não foi registrado em nosso servidor.</string>
+    <string name="dialog_loading_displays">Carregando displays...</string>
+    <string name="dialog_record_saved_successfully">Registro salvo com sucesso</string>
+    <string name="dialog_record_could_not_be_saved">O registro não pode ser salvo. Consulte o log para detalhes!</string>
+    <string name="dialog_email_is_required">Favor informar o email!</string>
+    <string name="dialog_warning">Ops! Não foi possível completar sua requisição! Favor tente novamente!</string>
+
+    <string name="toast_device_name_can_not_be_empty">O nome do dispositivo não pode ser vazio</string>
+    <string name="toast_place_name_can_not_be_empty">O local do dispositivo não pode ser vazio</string>
+    <string name="toast_store_id_can_not_be_empty">O código da loja não pode ser vazio</string>
+    <string name="toast_record_saved">Registro salvo com sucesso.</string>
+    <string name="toast_record_not_saved">Não foi possível gravar o registro. Consulte o log para maiores detalhes.</string>
+    <string name="toast_display_interval_can_not_be_empty">O tempo para atualização dos displays precisa ser informado</string>
+    <string name="toast_weather_interval_can_not_be_empty">O tempo para atualização da temperatura deverá ser informado</string>
+
+    <string name="btn_password_recover">Esqueci a senha</string>
+    <string name="btn_login">Acessar</string>
+    <string name="btn_register">Registrar</string>
+    <string name="btn_update">Alterar</string>
+    <string name="label_device_place_name">Local do dispositivo</string>
+    <string name="label_device_store_name">Nome da Loja</string>
+    <string name="label_device_store_id">Código da loja</string>
+    <string name="label_select_store">Selecione uma loja</string>
+    <string name="btn_select_store">Selecionar Loja</string>
+    <string name="label_sync_debug_enabled">Habilitar DEBUG</string>
+
 </resources>

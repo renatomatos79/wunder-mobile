@@ -8,27 +8,78 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.Window
+import android.view.WindowManager
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import org.wunder.helpers.ConstantsHelper
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideNotificationBar()
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        loadUserData()
+
+        if (savedInstanceState != null){
+            loadLastFragment(savedInstanceState)
+        }
+
+
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//        setSupportActionBar(toolbar)
+//
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//        }
+//
+//        val toggle = ActionBarDrawerToggle(
+//                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+//        drawer_layout.addDrawerListener(toggle)
+//        toggle.syncState()
+//
+//        nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    fun hideNotificationBar(){
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    fun loadUserData(){
+        var lblEmail = nav_view.getHeaderView(0).findViewById<TextView>(R.id.lblEmail)
+        lblEmail.setText("renato.matos79@gmail.com")
+        var lblUserName = nav_view.getHeaderView(0).findViewById<TextView>(R.id.lblUserName)
+        lblUserName.setText("Renato Matos")
+    }
+
+    fun loadLastFragment(savedInstanceState: Bundle){
+        val saved = savedInstanceState.getString(ConstantsHelper.BUNDLE_LAST_FRAGMENT)
+        //lastFragment = FragmentModelHelper.stringToFragmentModel(saved)
+
+        /*
+        when (lastFragment){
+
+            FragmentModel.Displays -> loadDisplays()
+            FragmentModel.Settings -> loadSettings()
+            FragmentModel.ImageSettings -> loadImageSettings()
+            FragmentModel.Sync -> loadSync()
+            FragmentModel.Password -> loadPassword()
+            FragmentModel.Storage -> loadStorage()
+            FragmentModel.None -> loadSettings()
+        }
+        */
     }
 
     override fun onBackPressed() {
