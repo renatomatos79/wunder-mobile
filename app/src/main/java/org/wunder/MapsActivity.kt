@@ -105,8 +105,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (icon != null){
                     var markOption = MapsHelper.createOptions(this, mark, icon)
                     if (markOption != null){
-                        val mk = mMap.addMarker(markOption)
-                        mk.tag = mark
+                        MapsHelper.createMap(mMap, markOption)
                     }
                 }
             }
@@ -116,23 +115,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     public override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        mMap.clear()
-        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-        mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener { marker ->
-            if (marker.tag != null) {
-                if (marker.tag is PlaceMarkData) {
-                    val data = marker.tag as PlaceMarkData?
-                    createDialog(data!!)
-                    return@OnMarkerClickListener true
+        try
+        {
+            mMap = googleMap
+            mMap.clear()
+            mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+            mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener { marker ->
+                if (marker.tag != null) {
+                    if (marker.tag is PlaceMarkData) {
+                        val data = marker.tag as PlaceMarkData?
+                        createDialog(data!!)
+                        return@OnMarkerClickListener true
+                    }
                 }
-            }
-            false
-        })
-        val marks = PlaceMarksService.placeMarks!!.placemarks
-                .filter { it.latlong() != null }
-                .take(10)
-                .toList();
-        drawMarks(marks);
+                false
+            })
+            val marks = PlaceMarksService.placeMarks!!.placemarks
+                    .filter { it.latlong() != null }
+                    .take(10)
+                    .toList();
+            drawMarks(marks);
+
+        } catch (ex: Exception){
+            LogHelper.addException(ex, "MapsActivity")
+        }
     }
 }

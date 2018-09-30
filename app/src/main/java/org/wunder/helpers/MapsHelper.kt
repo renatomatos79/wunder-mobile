@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import android.widget.TextView
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.ui.IconGenerator
@@ -40,6 +41,17 @@ object MapsHelper {
             LogHelper.addException(ex, "MapsHelper");
         }
         return null;
+    }
+
+    fun createMap(map: GoogleMap, markerOptions: MarkerOptions){
+        try
+        {
+            val mk = map.addMarker(markerOptions)
+            mk.tag = markerOptions
+        }
+        catch (ex: Exception){
+            LogHelper.addException(ex, "MapsHelper")
+        }
     }
 
 }

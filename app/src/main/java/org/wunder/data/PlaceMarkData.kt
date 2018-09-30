@@ -19,8 +19,8 @@ data class PlaceMarkData (var address: String, var coordinates: Array<Double>, v
                 return null;
             }
             // found out latlng
-            val lat = coordinates[0]
-            val lng = coordinates[1]
+            val lat = coordinates[1]
+            val lng = coordinates[0]
             _latlng = LatLng(lat!!, lng!!)
         }
         catch (ex: Exception){
