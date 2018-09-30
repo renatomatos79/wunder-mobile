@@ -15,10 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.wunder.helpers.AppHelper
-import org.wunder.helpers.LogHelper
-import org.wunder.helpers.MapsHelper
-import org.wunder.helpers.PlaceMarkDataHelper
+import org.wunder.helpers.*
 import org.wunder.services.PlaceMarksService
 
 
@@ -159,7 +156,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             if (mark != null){
                 var latlng = PlaceMarkDataHelper.latlong(mark!!)
-                MapsHelper.gotoLocation(mMap, latlng!!, 33f);
+                MapsHelper.gotoLocation(mMap, latlng!!, ConstantsHelper.MAPS_DEFAULT_ZOOM);
                 showSelectedMark(mark)
             }
 

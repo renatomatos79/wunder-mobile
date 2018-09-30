@@ -56,16 +56,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadMarks(savedInstanceState)
     }
 
-//    fun hideActionBar(hide: Boolean){
-//        val bar = supportActionBar
-//        if (bar != null){
-//            if (hide)
-//                bar.hide()
-//            else
-//                bar.show()
-//        }
-//    }
-
     fun hideNotificationBar(){
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

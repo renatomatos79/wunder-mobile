@@ -14,17 +14,5 @@
             android:title="@string/mni_map_title" />
     </group>
 
-    <item android:title="@string/menu_user">
-        <menu>
-            <item
-                android:id="@+id/mni_password"
-                android:icon="@android:drawable/ic_lock_idle_lock"
-                android:title="@string/mni_password" />
-            <item
-                android:id="@+id/mni_signout"
-                android:icon="@android:drawable/ic_lock_power_off"
-                android:title="@string/mni_signout" />
-        </menu>
-    </item>
 
 </menu>
