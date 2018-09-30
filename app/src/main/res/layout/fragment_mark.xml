@@ -12,18 +12,192 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/lblName"
-            android:text="01001"
-            android:textStyle="bold"
-            android:textSize="16dp"
+        <RelativeLayout
+            android:layout_marginTop="@dimen/margin_top_between_controls"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:text="Nome da loja"
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/lblName"
+                android:text="HH-GO8004"
+                android:textStyle="bold"
+                android:textSize="@dimen/mark_name"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:min="0"
+                    android:max="100"
+                    android:progress="50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="85"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:scaleType="fitXY"
+            android:src="@drawable/horizontal_line"
+            android:layout_height="@dimen/height_horizontal_line" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_top_between_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="VIN"
+                android:drawableLeft="@android:drawable/ic_input_get"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/lblVin"
+                android:text="WME4513341K412727"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/horizontal_line"
+            android:layout_height="@dimen/height_horizontal_line" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_top_between_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Address"
+                android:textSize="16dp"
+                android:drawableLeft="@android:drawable/ic_dialog_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/lbladdress"
+                android:text="Am Alten Posthaus 6, 22041 Hamburg"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/horizontal_line"
+            android:layout_height="@dimen/height_horizontal_line" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_top_between_controls"
+            android:layout_marginBottom="@dimen/margin_top_between_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Engine Type"
+                android:textSize="16dp"
+                android:drawableLeft="@android:drawable/ic_menu_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/lblEngineType"
+                android:text="CE"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/horizontal_line"
+            android:layout_height="@dimen/height_horizontal_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/ic_thumb_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="Interior"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:text="Avaliação Veículo"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/ic_thumb_down"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="Exterior"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

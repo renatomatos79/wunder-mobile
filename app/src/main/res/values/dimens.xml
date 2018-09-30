@@ -29,4 +29,5 @@
     <dimen name="text_size_count_display">5sp</dimen>
     <dimen name="bottom_bar_text_size">15sp</dimen>
     <dimen name="image_scale_type_height">200dp</dimen>
+    <dimen name="mark_name">30sp</dimen>
 </resources>
