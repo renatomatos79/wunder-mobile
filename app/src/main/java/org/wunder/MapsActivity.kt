@@ -1,5 +1,6 @@
 package org.wunder
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -105,10 +106,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         llyInfo!!.setVisibility(View.VISIBLE);
     }
 
+    @SuppressLint("NewApi")
     fun drawMarks(marks: List<PlaceMarkData>) {
         try{
             for (mark in marks) {
-                var icon = MapsHelper.createBitmap(this, mark)
+                val img = this.getDrawable(R.drawable.custom_info_bubble)
+                var textAppearance = R.style.IconGenTextDefault
+                if (this.selectedMark != null && this.selectedMark?.name.equals(mark.name)){
+                    textAppearance = R.style.IconGenTextSelected
+                }
+                var icon = MapsHelper.createBitmap(this, mark, img, textAppearance)
                 if (icon != null){
                     var markOption = MapsHelper.createOptions(this, mark, icon)
                     if (markOption != null){

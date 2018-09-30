@@ -2,6 +2,7 @@ package org.wunder.helpers
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.widget.TextView
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,12 +17,13 @@ import org.wunder.data.PlaceMarksData
 
 object MapsHelper {
 
-    fun createBitmap(context: Context, mark: PlaceMarkData): Bitmap? {
+    fun createBitmap(context: Context, mark: PlaceMarkData, img: Drawable, textAppearance: Int): Bitmap? {
         try {
             val text = TextView(context)
             text.setText(mark.name)
+            text.setTextAppearance(textAppearance)
             val generator = IconGenerator(context)
-            generator.setBackground(context.getDrawable(R.drawable.custom_info_bubble))
+            generator.setBackground(img)
             generator.setContentView(text)
             val icon = generator.makeIcon()
             return icon;
@@ -40,7 +42,7 @@ object MapsHelper {
             val markOption = MarkerOptions()
                     .position(latlng!!)
                     .alpha(0.7f)
-                    .snippet(mark.name + ": " + mark.fuel)
+                    .snippet(mark.name)
                     .icon(BitmapDescriptorFactory.fromBitmap(icon))
             return markOption;
         } catch (ex: Exception){
