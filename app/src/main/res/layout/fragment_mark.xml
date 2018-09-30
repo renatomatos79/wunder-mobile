@@ -199,6 +199,18 @@
 
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/btnViewInMap"
+            android:textStyle="bold"
+            android:text="@string/label_view_in_map"
+            android:layout_marginTop="55sp"
+            android:background="@android:color/holo_blue_light"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="@dimen/splash_margin_left"
+            android:layout_marginRight="@dimen/splash_margin_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </FrameLayout>

@@ -45,15 +45,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadMarks(savedInstanceState)
     }
 
-    fun hideActionBar(hide: Boolean){
-        val bar = supportActionBar
-        if (bar != null){
-            if (hide)
-                bar.hide()
-            else
-                bar.show()
-        }
-    }
+//    fun hideActionBar(hide: Boolean){
+//        val bar = supportActionBar
+//        if (bar != null){
+//            if (hide)
+//                bar.hide()
+//            else
+//                bar.show()
+//        }
+//    }
 
     fun hideNotificationBar(){
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun loadMarks(savedInstanceState: Bundle?){
 //        dialog = DialogHelper.showProgress(this.applicationContext, resources.getString(R.string.dialog_loading_marks), "")
-        hideActionBar(true)
         var fragment = PlaceMarksFragment.newInstance()
         replaceFragment(fragment)
     }

@@ -5,9 +5,29 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PlaceMarksFragment">
 
-    <ListView
-        android:id="@+id/lstMarks"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:drawableRight="@drawable/ic_find_in_page"
+                android:hint="@string/label_find"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lstMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+
+    </LinearLayout>
 
 </FrameLayout>
