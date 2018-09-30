@@ -82,6 +82,7 @@
     <string name="mni_storage">Armazenamento</string>
     <string name="mni_image">Imagem</string>
 
+    <string name="dialog_loading_marks">Carregando ...</string>
     <string name="dialog_loading_settings">Carregando dados do dispositivo</string>
     <string name="dialog_loading">Carregando...</string>
     <string name="dialog_authenticating">Autenticando...</string>
@@ -116,5 +117,8 @@
     <string name="label_select_store">Selecione uma loja</string>
     <string name="btn_select_store">Selecionar Loja</string>
     <string name="label_sync_debug_enabled">Habilitar DEBUG</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

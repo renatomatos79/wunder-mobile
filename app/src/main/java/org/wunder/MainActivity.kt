@@ -1,7 +1,10 @@
 package org.wunder
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -12,14 +15,19 @@ import android.view.WindowManager
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import org.wunder.data.PlaceMarkData
 import org.wunder.data.PlaceMarksData
-import org.wunder.helpers.AppHelper
+import org.wunder.fragments.PlaceMarksFragment
 import org.wunder.helpers.DialogHelper
-import org.wunder.interfaces.DownloadListener
-import org.wunder.services.CarService
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, PlaceMarksFragment.OnPlaceMarksListener {
+
+    var dialog: ProgressDialog? = null
+
+    override fun complete(marks: PlaceMarksData?, ex: Exception?) {
+       // dialog!!.dismiss()
+        dialog=null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +40,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        loadUserData()
+        loadDeveloperProfile()
 
-        //if (savedInstanceState != null){
-        //    loadLastFragment(savedInstanceState);
-        //}
-        loadLastFragment(savedInstanceState)
+        loadMarks(savedInstanceState)
+    }
+
+    fun hideActionBar(hide: Boolean){
+        val bar = supportActionBar
+        if (bar != null){
+            if (hide)
+                bar.hide()
+            else
+                bar.show()
+        }
     }
 
     fun hideNotificationBar(){
@@ -45,39 +60,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    fun loadUserData(){
+    fun loadDeveloperProfile(){
         var lblEmail = nav_view.getHeaderView(0).findViewById<TextView>(R.id.lblEmail)
         lblEmail.setText("renato.matos79@gmail.com")
         var lblUserName = nav_view.getHeaderView(0).findViewById<TextView>(R.id.lblUserName)
         lblUserName.setText("Renato Matos")
     }
 
-    fun loadLastFragment(savedInstanceState: Bundle?){
-
-        CarService.marks(object: DownloadListener<PlaceMarksData> {
-            override fun error(ex: Exception) {
-                AppHelper.showMessage(this@MainActivity, "Não foi possível processar a requisição")
-            }
-            override fun complete(marks: PlaceMarksData) {
-                AppHelper.showMessage(this@MainActivity, marks.placemarks.count().toString())
-            }
-        })
-
-        //val saved = savedInstanceState.getString(ConstantsHelper.BUNDLE_LAST_FRAGMENT)
-        //lastFragment = FragmentModelHelper.stringToFragmentModel(saved)
-
-        /*
-        when (lastFragment){
-
-            FragmentModel.Displays -> loadDisplays()
-            FragmentModel.Settings -> loadSettings()
-            FragmentModel.ImageSettings -> loadImageSettings()
-            FragmentModel.Sync -> loadSync()
-            FragmentModel.Password -> loadPassword()
-            FragmentModel.Storage -> loadStorage()
-            FragmentModel.None -> loadSettings()
-        }
-        */
+    fun loadMarks(savedInstanceState: Bundle?){
+//        dialog = DialogHelper.showProgress(this.applicationContext, resources.getString(R.string.dialog_loading_marks), "")
+        hideActionBar(true)
+        var fragment = PlaceMarksFragment.newInstance()
+        replaceFragment(fragment)
     }
 
     override fun onBackPressed() {
@@ -129,5 +123,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun replaceFragment(fragment: Fragment): FragmentTransaction {
+        val fm = supportFragmentManager
+        val ft = fm.beginTransaction()
+        ft.replace(R.id.frmFrameLayout, fragment, "FRAGMENT_MENU")
+        ft.commit()
+        return ft
     }
 }

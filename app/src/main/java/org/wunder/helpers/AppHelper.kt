@@ -27,5 +27,10 @@ public object AppHelper {
         DialogHelper.showMessage(activity, R.string.dialog_atention, resourceID)
     }
 
+    fun showWarning(activity: Activity){
+        val message = activity.resources.getString(R.string.dialog_warning)
+        AppHelper.showMessage(activity, message)
+    }
+
 
 }

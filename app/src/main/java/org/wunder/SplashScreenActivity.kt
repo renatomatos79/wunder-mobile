@@ -9,30 +9,14 @@ import kotlinx.android.synthetic.main.activity_splash_screen.*
 import org.wunder.helpers.ActivityHelper.launchActitity
 import org.wunder.helpers.AppHelper
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 class SplashScreenActivity : AppCompatActivity() {
 
     private val mHideHandler = Handler()
-    private val mHidePart2Runnable = Runnable {
-        // Delayed removal of status and navigation bar
-
-    }
-
-    private val mShowPart2Runnable = Runnable {
-        // Delayed display of UI elements
-        supportActionBar?.show()
-    }
-
+    private val mHidePart2Runnable = Runnable { }
+    private val mShowPart2Runnable = Runnable { supportActionBar?.show() }
     private var mVisible: Boolean = false
     private val mHideRunnable = Runnable { hide() }
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
+
     private val mDelayHideTouchListener = View.OnTouchListener { _, _ ->
         if (AUTO_HIDE) {
             delayedHide(AUTO_HIDE_DELAY_MILLIS)

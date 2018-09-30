@@ -2,38 +2,35 @@ package org.wunder.services
 
 import com.github.kittinunf.fuel.httpGet
 import org.wunder.data.PlaceMarkData
-
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import org.wunder.data.PlaceMarksData
 import org.wunder.helpers.ConstantsHelper
 import org.wunder.helpers.JsonHelper
 import org.wunder.helpers.JsonHelper.getFromJSON
 import org.wunder.helpers.LogHelper
-import org.wunder.interfaces.DownloadListener
+import org.wunder.interfaces.OnDownloadListener
 
-public object CarService {
+object PlaceMarksService {
 
-    private fun downloadJSON(downloadListener: DownloadListener<String>) {
+    private fun downloadJSON(onDownloadListener: OnDownloadListener<String>) {
         ConstantsHelper.PLACE_MARKS_URL.httpGet().responseString { request, response, result ->
             when (result) {
                 is com.github.kittinunf.result.Result.Failure -> {
                     LogHelper.addException(result.getException(), "PlaceMarkService")
-                    downloadListener.error(result.getException())
+                    onDownloadListener.error(result.getException())
                 }
                 is com.github.kittinunf.result.Result.Success -> {
-                    downloadListener.complete(result.get())
+                    onDownloadListener.complete(result.get())
                 }
             }
         }
 
     }
 
-    fun marks(placeMarksDownloadListener: DownloadListener<PlaceMarksData>) {
+    fun marks(placeMarksOnDownloadListener: OnDownloadListener<PlaceMarksData>) {
         try {
-            downloadJSON(object : DownloadListener<String> {
+            downloadJSON(object : OnDownloadListener<String> {
                 override fun error(ex: Exception) {
-                    placeMarksDownloadListener.error(ex)
+                    placeMarksOnDownloadListener.error(ex)
                 }
 
                 override fun complete(json: String) {
@@ -41,12 +38,12 @@ public object CarService {
                     val innerJson = JsonHelper.toJSON(r["placemarks"])
                     var marks = getFromJSON(innerJson, Array<PlaceMarkData>::class.java).toList()
                     var mark = PlaceMarksData(marks)
-                    placeMarksDownloadListener.complete(mark)
+                    placeMarksOnDownloadListener.complete(mark)
                 }
             })
         } catch (ex: Exception) {
             LogHelper.addException(ex, "PlaceMarkService");
-            placeMarksDownloadListener.error(ex)
+            placeMarksOnDownloadListener.error(ex)
         }
 
     }

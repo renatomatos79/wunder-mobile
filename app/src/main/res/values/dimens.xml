@@ -10,4 +10,23 @@
     <dimen name="splash_margin_right">25sp</dimen>
     <dimen name="splash_contact_text_size">14sp</dimen>
     <dimen name="splash_contact_margin_top">10sp</dimen>
+
+    <dimen name="storage_item_image_width">80dp</dimen>
+    <dimen name="storage_item_image_height">80dp</dimen>
+    <dimen name="margin_top_between_controls">10dp</dimen>
+    <dimen name="margin_top_from_logo">25dp</dimen>
+    <dimen name="margin_layout">10dp</dimen>
+    <dimen name="height_horizontal_line">5dp</dimen>
+
+    <dimen name="text_size_h1">18dp</dimen>
+    <dimen name="text_size_h2">15dp</dimen>
+    <dimen name="text_size_content">12dp</dimen>
+    <dimen name="margin_left_display_weather">2dp</dimen>
+    <dimen name="bottom_bar_display_height">40dp</dimen>
+    <dimen name="magin_bottom_display_image">3dp</dimen>
+    <dimen name="magin_top_display_image">3dp</dimen>
+    <dimen name="text_size_date_display">6sp</dimen>
+    <dimen name="text_size_count_display">5sp</dimen>
+    <dimen name="bottom_bar_text_size">15sp</dimen>
+    <dimen name="image_scale_type_height">200dp</dimen>
 </resources>
