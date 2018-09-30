@@ -33,8 +33,12 @@ object MapsHelper {
 
     fun createOptions(context: Context, mark: PlaceMarkData, icon: Bitmap?): MarkerOptions? {
         try {
+            var latlng = PlaceMarkDataHelper.latlong(mark);
+            if (latlng == null){
+                return null;
+            }
             val markOption = MarkerOptions()
-                    .position(mark.latlong()!!)
+                    .position(latlng!!)
                     .alpha(0.7f)
                     .snippet(mark.name + ": " + mark.fuel)
                     .icon(BitmapDescriptorFactory.fromBitmap(icon))

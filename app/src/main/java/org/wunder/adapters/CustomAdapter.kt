@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import org.wunder.interfaces.OnItemSelectedListener
 
-abstract class CustomAdapter<T : Any, Holder : Any>(val ctx: Context, val resourceId: Int, val list: List<T>, var enableRowClick: Boolean = true) : ArrayAdapter<T>(ctx, resourceId, list)
+abstract class CustomAdapter<T : Any, Holder : Any>(val ctx: Context, val resourceId: Int, var list: List<T>, var enableRowClick: Boolean = true) : ArrayAdapter<T>(ctx, resourceId, list)
 {
     abstract fun createHolder(model: T, position: Int, convertView: View?, parent: ViewGroup?) : Holder;
 

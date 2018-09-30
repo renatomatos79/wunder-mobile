@@ -2,6 +2,7 @@ package org.wunder
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -16,6 +17,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import org.wunder.data.PlaceMarkData
 import org.wunder.data.PlaceMarksData
 import org.wunder.fragments.PlaceMarksFragment
 import org.wunder.helpers.ActivityHelper
@@ -30,6 +32,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun complete(marks: PlaceMarksData?, ex: Exception?) {
        // dialog!!.dismiss()
         dialog=null
+    }
+
+    override fun selected(item: PlaceMarkData) {
+        val it = Intent(this, MapsActivity::class.java)
+        it.putExtra("data", item)
+        this.startActivity(it)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

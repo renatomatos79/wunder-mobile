@@ -125,5 +125,11 @@
     <string name="title_activity_maps">Map</string>
     <string name="mni_map_title">MAP</string>
     <string name="mni_list_title">List</string>
+    <string name="label_find_hint">Press return to filter</string>
+    <string name="label_vin">VIN</string>
+    <string name="label_address">Address</string>
+    <string name="label_engine_type">Engine Type</string>
+    <string name="label_evaluation">Avaliação Veículo</string>
+    <string name="place_mark_warning_no_good_coordinators">Please! Select another car!</string>
 
 </resources>

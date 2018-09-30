@@ -18,7 +18,9 @@ import android.widget.TextView
 import org.wunder.helpers.AppHelper
 import org.wunder.helpers.LogHelper
 import org.wunder.helpers.MapsHelper
+import org.wunder.helpers.PlaceMarkDataHelper
 import org.wunder.services.PlaceMarksService
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -31,11 +33,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var lblLocation: TextView? = null
     private var btnHide: Button? = null;
 
+    private var selectedMark: PlaceMarkData? = null;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         bindControls()
+        loadArgments()
         createMap(null)
+    }
+
+    private fun loadArgments(){
+        val it = intent
+        var data = it.getSerializableExtra("data")
+        if (data != null && data is PlaceMarkData) {
+            selectedMark = data as PlaceMarkData
+        }
     }
 
     private fun bindControls(){
@@ -126,17 +139,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 false
             })
             val marks = PlaceMarksService.placeMarks!!.placemarks
-                    .filter { it.latlong() != null }
-                    //.take(10)
+                    .filter { PlaceMarkDataHelper.latlong(it) != null }
                     .toList();
             drawMarks(marks);
-            var first = marks.firstOrNull();
-            if (first != null){
-                MapsHelper.gotoLocation(mMap, first.latlong()!!, 13f);
-            }
+            gotoSelected(marks)
 
         } catch (ex: Exception){
             LogHelper.addException(ex, "MapsActivity")
+        }
+    }
+
+    private fun gotoSelected(marks: List<PlaceMarkData>) {
+        try
+        {
+            // get selected mark sent by list
+            var mark: PlaceMarkData? = selectedMark
+            if (mark == null){
+                mark = marks.firstOrNull();
+            }
+            if (mark != null){
+                var latlng = PlaceMarkDataHelper.latlong(mark!!)
+                MapsHelper.gotoLocation(mMap, latlng!!, 33f);
+                showSelectedMark(mark)
+            }
+
+        } catch (ex: Exception) {
+            LogHelper.addException(ex, "MapsActitivy");
         }
     }
 }

@@ -16,6 +16,7 @@
     <dimen name="margin_top_between_controls">10dp</dimen>
     <dimen name="margin_top_from_logo">25dp</dimen>
     <dimen name="margin_layout">10dp</dimen>
+    <dimen name="list_view_item_margin_layout">15sp</dimen>
     <dimen name="height_horizontal_line">5dp</dimen>
 
     <dimen name="text_size_h1">18dp</dimen>
@@ -33,4 +34,7 @@
     <dimen name="btn_hide_margin_top">5sp</dimen>
     <dimen name="btn_hide_margin_right">5sp</dimen>
     <dimen name="map_display_info_height">55dp</dimen>
+    <dimen name="list_view_item_button_margin_left">15sp</dimen>
+    <dimen name="list_view_item_button_margin_right">15sp</dimen>
+    <dimen name="list_view_item_button_margin_bottom">10sp</dimen>
 </resources>

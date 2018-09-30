@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="@dimen/margin_layout"
+        android:layout_margin="@dimen/list_view_item_margin_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -32,14 +32,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ProgressBar
-                    android:min="0"
-                    android:max="100"
-                    android:progress="50"
+                <ImageView
+                    android:src="@drawable/ic_local_gas_station"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/lblFuel"
                     android:text="85"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -51,11 +50,11 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/horizontal_line"
-            android:layout_height="@dimen/height_horizontal_line" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/horizontal_line"-->
+            <!--android:layout_height="@dimen/height_horizontal_line" />-->
 
         <LinearLayout
             android:orientation="horizontal"
@@ -64,7 +63,8 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="VIN"
+                android:text="@string/label_vin"
+                android:gravity="center_vertical"
                 android:drawableLeft="@android:drawable/ic_input_get"
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
@@ -81,11 +81,11 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/horizontal_line"
-            android:layout_height="@dimen/height_horizontal_line" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/horizontal_line"-->
+            <!--android:layout_height="@dimen/height_horizontal_line" />-->
 
         <LinearLayout
             android:orientation="horizontal"
@@ -94,14 +94,15 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Address"
+                android:text="@string/label_address"
+                android:gravity="center_vertical"
                 android:textSize="16dp"
                 android:drawableLeft="@android:drawable/ic_dialog_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/lbladdress"
+                android:id="@+id/lblLocation"
                 android:text="Am Alten Posthaus 6, 22041 Hamburg"
                 android:textStyle="bold"
                 android:textSize="16dp"
@@ -111,11 +112,11 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/horizontal_line"
-            android:layout_height="@dimen/height_horizontal_line" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/horizontal_line"-->
+            <!--android:layout_height="@dimen/height_horizontal_line" />-->
 
         <LinearLayout
             android:orientation="horizontal"
@@ -125,8 +126,9 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Engine Type"
+                android:text="@string/label_engine_type"
                 android:textSize="16dp"
+                android:gravity="center_vertical"
                 android:drawableLeft="@android:drawable/ic_menu_manage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -142,11 +144,11 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/horizontal_line"
-            android:layout_height="@dimen/height_horizontal_line" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/horizontal_line"-->
+            <!--android:layout_height="@dimen/height_horizontal_line" />-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -159,6 +161,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/imgInterior"
                     android:src="@drawable/ic_thumb_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -172,7 +175,7 @@
             </LinearLayout>
 
             <TextView
-                android:text="Avaliação Veículo"
+                android:text="@string/label_evaluation"
                 android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -185,6 +188,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/imgExterior"
                     android:src="@drawable/ic_thumb_down"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -206,8 +210,9 @@
             android:layout_marginTop="55sp"
             android:background="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
-            android:layout_marginLeft="@dimen/splash_margin_left"
-            android:layout_marginRight="@dimen/splash_margin_right"
+            android:layout_marginLeft="@dimen/list_view_item_button_margin_left"
+            android:layout_marginRight="@dimen/list_view_item_button_margin_right"
+            android:layout_marginBottom="@dimen/list_view_item_button_margin_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
