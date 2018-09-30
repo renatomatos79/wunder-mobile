@@ -5,6 +5,8 @@ import android.Manifest
 import java.util.ArrayList
 
 object ConstantsHelper {
+    var PLACE_MARKS_URL = "https://s3-us-west-2.amazonaws.com/wunderbucket/locations.json";
+
     var APP_NAME = "LuqyTV"
     var STORAGE_DEFAULT = "Storage_Default"
     var STORAGE_DEFAULT_INTERNAL = "Storage_Default_Internal"
@@ -53,6 +55,6 @@ object ConstantsHelper {
     val ONE_HOUR: Long? = 60 * ONE_MINUTE!!
     val ONE_DAY: Long? = 24 * ONE_HOUR!!
 
-    val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.INTERNET, Manifest.permission.READ_PHONE_STATE)
+    val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.INTERNET)
 
 }

@@ -1,9 +1,6 @@
 package org.wunder.helpers
 
 import android.app.Activity
-import android.content.Context
-import android.text.TextUtils
-import android.widget.ImageView
 import org.wunder.R
 
 public object AppHelper {
@@ -21,13 +18,13 @@ public object AppHelper {
         return true
     }
 
-    fun showMessage(context: Context, message: String){
-        val title = context.resources.getString(R.string.dialog_atention)
-        DialogHelper.showMessage(context, title, message)
+    fun showMessage(activity: Activity, message: String){
+        val title = activity.resources.getString(R.string.dialog_atention)
+        DialogHelper.showMessage(activity, title, message)
     }
 
-    fun showMessage(context: Context, resourceID: Int){
-        DialogHelper.showMessage(context, R.string.dialog_atention, resourceID)
+    fun showMessage(activity: Activity, resourceID: Int){
+        DialogHelper.showMessage(activity, R.string.dialog_atention, resourceID)
     }
 
 

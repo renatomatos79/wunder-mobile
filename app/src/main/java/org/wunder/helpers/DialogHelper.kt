@@ -1,11 +1,11 @@
 package org.wunder.helpers
 
+import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
-
 
 public object DialogHelper {
 
@@ -18,20 +18,22 @@ public object DialogHelper {
         dialog.dismiss();
     }
 
-    fun showMessage(context: Context, title: String, message: String) {
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setCancelable(true)
-        builder.setNeutralButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
-        val dialog = builder.create()
-        dialog.show()
+    fun showMessage(activity: Activity, title: String, message: String) {
+        activity.runOnUiThread(Runnable {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle(title)
+            builder.setMessage(message)
+            builder.setCancelable(true)
+            builder.setNeutralButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+            val dialog = builder.create()
+            dialog.show()
+        })
     }
 
-    fun showMessage(context: Context, titleResourceID: Int, messageResourceID: Int){
-        val title = context.resources.getString(titleResourceID)
-        val message = context.resources.getString(messageResourceID)
-        showMessage(context, title, message)
+    fun showMessage(activity: Activity, titleResourceID: Int, messageResourceID: Int){
+        val title = activity.resources.getString(titleResourceID)
+        val message = activity.resources.getString(messageResourceID)
+        showMessage(activity, title, message)
     }
 
 }

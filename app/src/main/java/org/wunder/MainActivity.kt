@@ -1,7 +1,6 @@
 package org.wunder
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,10 +10,14 @@ import android.view.MenuItem
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import org.wunder.helpers.ConstantsHelper
+import org.wunder.data.PlaceMarkData
+import org.wunder.data.PlaceMarksData
+import org.wunder.helpers.AppHelper
+import org.wunder.helpers.DialogHelper
+import org.wunder.interfaces.DownloadListener
+import org.wunder.services.CarService
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,9 +54,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun loadLastFragment(savedInstanceState: Bundle?){
 
-        var cars = CarService.cars()
-
-        Toast.makeText(this, cars.toString(), Toast.LENGTH_LONG).show();
+        CarService.marks(object: DownloadListener<PlaceMarksData> {
+            override fun error(ex: Exception) {
+                AppHelper.showMessage(this@MainActivity, "Não foi possível processar a requisição")
+            }
+            override fun complete(marks: PlaceMarksData) {
+                AppHelper.showMessage(this@MainActivity, marks.placemarks.count().toString())
+            }
+        })
 
         //val saved = savedInstanceState.getString(ConstantsHelper.BUNDLE_LAST_FRAGMENT)
         //lastFragment = FragmentModelHelper.stringToFragmentModel(saved)
