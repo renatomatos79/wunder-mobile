@@ -2,9 +2,6 @@
     <string name="app_name">Wunder</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_splash_screen">Wunder</string>
@@ -22,8 +19,14 @@
     <string name="label_address">Address</string>
     <string name="label_vin">VIN</string>
     <string name="label_find_hint">After typing press DONE</string>
+
     <string name="nav_drawer_open">Open</string>
     <string name="nav_drawer_close">Close</string>
+    <string name="nav_header_developer">Renato Matos</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_email">renato.matos79@gmail.com</string>
 
     <string name="mni_list_title">List</string>
     <string name="mni_map_title">MAP</string>
@@ -36,5 +39,6 @@
     <string name="dialog_record_could_not_be_saved">The record was not saved. Check the log for details!</string>
     <string name="dialog_warning">Please! Try again!</string>
     <string name="dialog_select_another_mark">Please! Select another mark!</string>
+
 
 </resources>

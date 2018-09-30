@@ -29,7 +29,6 @@ class PlaceMarksAdapter(fragment: Fragment, list: List<PlaceMarkData>) : CustomA
         holder?.imgInterior = convertView?.findViewById(R.id.imgInterior)
         holder?.imgExterior = convertView?.findViewById(R.id.imgExterior)
         holder?.btnViewInMap = convertView?.findViewById(R.id.btnViewInMap)
-        holder?.btnViewInMap!!.tag = model
 
         holder?.btnViewInMap!!.setOnClickListener({
             if (_fragment is OnItemSelectedListener<*>){
@@ -50,6 +49,7 @@ class PlaceMarksAdapter(fragment: Fragment, list: List<PlaceMarkData>) : CustomA
         holder?.lblEngineType?.text = model.engineType
         holder?.imgInterior?.setImageResource(PlaceMarkDataHelper.interiorEvaluation(model))
         holder?.imgExterior?.setImageResource(PlaceMarkDataHelper.exteriorEvaluation(model))
+        holder?.btnViewInMap?.tag = model
     }
 
     class PlaceMarkViewHolder {
