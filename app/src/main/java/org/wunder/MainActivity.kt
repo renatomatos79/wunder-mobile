@@ -1,5 +1,6 @@
 package org.wunder
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.wunder.data.PlaceMarksData
 import org.wunder.fragments.PlaceMarksFragment
+import org.wunder.helpers.ActivityHelper
+import org.wunder.helpers.ActivityHelper.launchActitity
 import org.wunder.helpers.DialogHelper
 
 
@@ -73,6 +76,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         replaceFragment(fragment)
     }
 
+    fun loadMap(savedInstanceState: Bundle?){
+        launchActitity(MapsActivity::class.java);
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -100,23 +107,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
+            R.id.mni_list -> {
+                loadMarks(null)
             }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.mni_map -> {
+                loadMap(null)
             }
         }
 

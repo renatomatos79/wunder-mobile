@@ -11,6 +11,8 @@ import org.wunder.interfaces.OnDownloadListener
 
 object PlaceMarksService {
 
+    var placeMarks: PlaceMarksData? = null
+
     private fun downloadJSON(onDownloadListener: OnDownloadListener<String>) {
         ConstantsHelper.PLACE_MARKS_URL.httpGet().responseString { request, response, result ->
             when (result) {
@@ -37,8 +39,8 @@ object PlaceMarksService {
                     val r = getFromJSON(json, Map::class.java)
                     val innerJson = JsonHelper.toJSON(r["placemarks"])
                     var marks = getFromJSON(innerJson, Array<PlaceMarkData>::class.java).toList()
-                    var mark = PlaceMarksData(marks)
-                    placeMarksOnDownloadListener.complete(mark)
+                    placeMarks = PlaceMarksData(marks)
+                    placeMarksOnDownloadListener.complete(placeMarks!!)
                 }
             })
         } catch (ex: Exception) {

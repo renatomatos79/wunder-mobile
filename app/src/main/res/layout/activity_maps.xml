@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="br.com.renatomatos.recimoveis.LoginActivity">
+
+    <LinearLayout
+        android:layout_margin="5dip"
+        android:id="@+id/llySearch"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <EditText
+            android:id="@+id/txtAddress"
+            android:text=""
+            android:layout_width="0dp"
+            android:background="@drawable/no_border"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:layout_weight="0.8"
+            android:textSize="14dp"
+            android:hint="Rua, Bairro, CEP"
+            android:textColor="@android:color/darker_gray"
+            android:textStyle="normal"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnFilter"
+            android:background="@android:color/white"
+            android:text="FILTRAR"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="normal"
+            android:textSize="12dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameFragmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints"></FrameLayout>
+
+</LinearLayout>
