@@ -4,8 +4,10 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import android.widget.TextView
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.ui.IconGenerator
 import org.wunder.R
@@ -43,11 +45,23 @@ object MapsHelper {
         return null;
     }
 
-    fun createMap(map: GoogleMap, markerOptions: MarkerOptions){
+    fun createMap(map: GoogleMap, mark: PlaceMarkData, markerOptions: MarkerOptions){
         try
         {
             val mk = map.addMarker(markerOptions)
-            mk.tag = markerOptions
+            mk.tag = mark
+        }
+        catch (ex: Exception){
+            LogHelper.addException(ex, "MapsHelper")
+        }
+    }
+
+    fun gotoLocation(map: GoogleMap, latLng: LatLng, zoom: Float){
+        try
+        {
+            val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, zoom)
+            map.moveCamera(cameraUpdate)
+            map.animateCamera(cameraUpdate);
         }
         catch (ex: Exception){
             LogHelper.addException(ex, "MapsHelper")

@@ -5,21 +5,17 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.view.View
-import android.widget.Button
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import org.wunder.data.PlaceMarkData
-import android.widget.EditText
-import android.widget.LinearLayout
 import android.content.pm.PackageManager
-import org.wunder.helpers.AppHelper
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
-import com.google.maps.android.ui.IconGenerator
+import org.wunder.helpers.AppHelper
 import org.wunder.helpers.LogHelper
 import org.wunder.helpers.MapsHelper
 import org.wunder.services.PlaceMarksService
@@ -30,21 +26,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var lastLocation: LatLng? = null
     private var repositionMap = true
     private var mapFragment: SupportMapFragment? = null
-    private var llySearch: LinearLayout? = null
-    private var txtAddress: EditText? = null
-    private var btnFilter: Button? = null
+    private var llyInfo: LinearLayout? = null
+    private var lblName: TextView? = null
+    private var lblLocation: TextView? = null
+    private var btnHide: Button? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        llySearch = findViewById(R.id.llySearch) as LinearLayout
-        txtAddress = findViewById(R.id.txtAddress) as EditText
-        btnFilter = findViewById(R.id.btnFilter) as Button
-        btnFilter!!.setOnClickListener({
-            createSearch()
-        })
+        bindControls()
         createMap(null)
-        createSearch()
+    }
+
+    private fun bindControls(){
+        llyInfo = findViewById(R.id.llyInfo);
+        lblName = findViewById(R.id.lblName);
+        lblLocation = findViewById(R.id.lblLocation);
+        btnHide = findViewById(R.id.btnHide)
+        llyInfo!!.setVisibility(View.GONE);
+        btnHide!!.setOnClickListener({
+            llyInfo!!.setVisibility(View.GONE);
+        })
     }
 
     private fun createMap(location: LatLng?) {
@@ -56,12 +58,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mapFragment!!.getMapAsync(this)
             replaceFragment(mapFragment!!)
         }
-    }
-
-    private fun createSearch() {
-        llySearch!!.setVisibility(View.INVISIBLE)
-        //propertyDefaultFilterFragment = PropertyFilterDialogFragment.Factory.Instance()
-        //replaceFragment(propertyDefaultFilterFragment)
     }
 
     private fun replaceFragment(fragment: Fragment): FragmentTransaction {
@@ -93,9 +89,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    fun createDialog(data: PlaceMarkData) {
-        //val bottomSheetDialogFragment = PropertyViewPhotoDialogFragment.Factory.Instance(data)
-        //bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.getTag())
+    fun showSelectedMark(data: PlaceMarkData) {
+        lblName!!.text = data.name
+        lblLocation!!.text = data.address
+        llyInfo!!.setVisibility(View.VISIBLE);
     }
 
     fun drawMarks(marks: List<PlaceMarkData>) {
@@ -105,7 +102,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (icon != null){
                     var markOption = MapsHelper.createOptions(this, mark, icon)
                     if (markOption != null){
-                        MapsHelper.createMap(mMap, markOption)
+                        MapsHelper.createMap(mMap, mark, markOption)
                     }
                 }
             }
@@ -121,20 +118,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.clear()
             mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
             mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener { marker ->
-                if (marker.tag != null) {
-                    if (marker.tag is PlaceMarkData) {
-                        val data = marker.tag as PlaceMarkData?
-                        createDialog(data!!)
-                        return@OnMarkerClickListener true
-                    }
+                if (marker.tag != null && marker.tag is PlaceMarkData) {
+                    val data = marker.tag as PlaceMarkData?
+                    showSelectedMark(data!!)
+                    return@OnMarkerClickListener true
                 }
                 false
             })
             val marks = PlaceMarksService.placeMarks!!.placemarks
                     .filter { it.latlong() != null }
-                    .take(10)
+                    //.take(10)
                     .toList();
             drawMarks(marks);
+            var first = marks.firstOrNull();
+            if (first != null){
+                MapsHelper.gotoLocation(mMap, first.latlong()!!, 13f);
+            }
 
         } catch (ex: Exception){
             LogHelper.addException(ex, "MapsActivity")
