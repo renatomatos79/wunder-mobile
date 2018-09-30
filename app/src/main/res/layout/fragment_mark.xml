@@ -50,12 +50,6 @@
 
         </RelativeLayout>
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:scaleType="fitXY"-->
-            <!--android:src="@drawable/horizontal_line"-->
-            <!--android:layout_height="@dimen/height_horizontal_line" />-->
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/margin_top_between_controls"
@@ -80,12 +74,6 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:scaleType="fitXY"-->
-            <!--android:src="@drawable/horizontal_line"-->
-            <!--android:layout_height="@dimen/height_horizontal_line" />-->
 
         <LinearLayout
             android:orientation="horizontal"
@@ -112,12 +100,6 @@
 
         </LinearLayout>
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:scaleType="fitXY"-->
-            <!--android:src="@drawable/horizontal_line"-->
-            <!--android:layout_height="@dimen/height_horizontal_line" />-->
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/margin_top_between_controls"
@@ -143,12 +125,6 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:scaleType="fitXY"-->
-            <!--android:src="@drawable/horizontal_line"-->
-            <!--android:layout_height="@dimen/height_horizontal_line" />-->
 
         <RelativeLayout
             android:layout_width="match_parent"

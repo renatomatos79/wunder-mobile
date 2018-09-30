@@ -1,7 +1,5 @@
 package org.wunder
 
-import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -12,26 +10,20 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.Window
-import android.view.WindowManager
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.wunder.data.PlaceMarkData
 import org.wunder.data.PlaceMarksData
 import org.wunder.fragments.PlaceMarksFragment
-import org.wunder.helpers.ActivityHelper
 import org.wunder.helpers.ActivityHelper.launchActitity
-import org.wunder.helpers.DialogHelper
-
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, PlaceMarksFragment.OnPlaceMarksListener {
 
-    var dialog: ProgressDialog? = null
+    //var dialog: ProgressDialog? = null
 
     override fun complete(marks: PlaceMarksData?, ex: Exception?) {
        // dialog!!.dismiss()
-        dialog=null
+        //dialog=null
     }
 
     override fun selected(item: PlaceMarkData) {
@@ -51,21 +43,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        loadDeveloperProfile()
-
         loadMarks(savedInstanceState)
     }
 
     fun hideNotificationBar(){
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
-    fun loadDeveloperProfile(){
-        var lblEmail = nav_view.getHeaderView(0).findViewById<TextView>(R.id.lblEmail)
-        lblEmail.setText("renato.matos79@gmail.com")
-        var lblUserName = nav_view.getHeaderView(0).findViewById<TextView>(R.id.lblUserName)
-        lblUserName.setText("Renato Matos")
+        //getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     fun loadMarks(savedInstanceState: Bundle?){
@@ -93,9 +76,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> return true
             else -> return super.onOptionsItemSelected(item)

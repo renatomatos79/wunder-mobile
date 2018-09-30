@@ -36,7 +36,7 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
 
     override fun select(item: PlaceMarkData) {
         if (PlaceMarkDataHelper.latlong(item) == null){
-            var msg = resources.getString(R.string.place_mark_warning_no_good_coordinators);
+            var msg = resources.getString(R.string.dialog_select_another_mark);
             AppHelper.showMessage(activity!!, msg)
         } else {
             if (listener != null){
