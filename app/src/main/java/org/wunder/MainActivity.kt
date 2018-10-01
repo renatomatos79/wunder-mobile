@@ -19,13 +19,6 @@ import org.wunder.helpers.ActivityHelper.launchActitity
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, PlaceMarksFragment.OnPlaceMarksListener {
 
-    //var dialog: ProgressDialog? = null
-
-    override fun complete(marks: PlaceMarksData?, ex: Exception?) {
-       // dialog!!.dismiss()
-        //dialog=null
-    }
-
     override fun selected(item: PlaceMarkData) {
         val it = Intent(this, MapsActivity::class.java)
         it.putExtra("data", item)
@@ -34,7 +27,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideNotificationBar()
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -46,13 +38,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadMarks(savedInstanceState)
     }
 
-    fun hideNotificationBar(){
-        //getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
     fun loadMarks(savedInstanceState: Bundle?){
-//        dialog = DialogHelper.showProgress(this.applicationContext, resources.getString(R.string.dialog_loading_marks), "")
         var fragment = PlaceMarksFragment.newInstance()
         replaceFragment(fragment)
     }

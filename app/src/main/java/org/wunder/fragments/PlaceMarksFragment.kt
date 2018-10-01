@@ -1,6 +1,7 @@
 package org.wunder.fragments
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.TextView
 
 import org.wunder.R
@@ -28,10 +31,21 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
     private var listMarks: ListView? = null
     private var internalMarks: List<PlaceMarkData>? = null
     private var adapter: PlaceMarksAdapter? = null
+    private var progress: ProgressBar? = null;
+    private var llyMain: LinearLayout? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
 
+    fun enableProgress(active: Boolean){
+        if (active) {
+            llyMain?.visibility =  View.GONE
+            progress?.visibility =  View.VISIBLE
+        } else {
+            llyMain?.visibility =  View.VISIBLE
+            progress?.visibility =  View.GONE
+        }
     }
 
     override fun select(item: PlaceMarkData) {
@@ -46,6 +60,7 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
     }
 
     private fun filter(content: String?){
+        enableProgress(true)
         try
         {
             var hasContent = content != null && TextUtils.isEmpty(content) == false
@@ -62,7 +77,10 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
             }
         } catch (ex: Exception){
             LogHelper.addException(ex, "PlaceMarksFragment")
+        } finally {
+            enableProgress(false)
         }
+
     }
 
     private fun isDone(actionId: Int) : Boolean {
@@ -72,6 +90,8 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
     }
 
     private fun bindControls(layout: View){
+        progress = layout.findViewById(R.id.progress)
+        llyMain = layout.findViewById(R.id.llyMain)
         txtSearch = layout.findViewById(R.id.txtSearch)
         listMarks = layout!!.findViewById<ListView>(R.id.lstMarks)
         txtSearch!!.setOnEditorActionListener() { v, actionId, event ->
@@ -83,6 +103,7 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
                 false
             }
         }
+        enableProgress(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -90,14 +111,13 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
         bindControls(layout!!)
         PlaceMarksService.marks(object: OnDownloadListener<PlaceMarksData> {
             override fun error(ex: Exception) {
+                enableProgress(false)
                 AppHelper.showWarning(activity!!)
-                listener!!.complete(null, ex)
             }
             override fun complete(marks: PlaceMarksData) {
                 activity!!.runOnUiThread(Runnable {
                     internalMarks = marks.placemarks.toList()
                     filter(null)
-                    listener!!.complete(marks, null)
                 })
             }
         })
@@ -119,7 +139,6 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
     }
 
     interface OnPlaceMarksListener {
-        fun complete(marks: PlaceMarksData?, ex: Exception?)
         fun selected(item: PlaceMarkData)
     }
 

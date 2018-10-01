@@ -5,7 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PlaceMarksFragment">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
+        android:id="@+id/llyMain"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
