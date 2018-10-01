@@ -13,9 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import org.wunder.data.PlaceMarkData
 import android.content.pm.PackageManager
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import org.wunder.helpers.*
 import org.wunder.services.PlaceMarksService
 
@@ -30,6 +28,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var lblName: TextView? = null
     private var lblLocation: TextView? = null
     private var btnHide: Button? = null;
+    private var progress: ProgressBar? = null
+    private var frmLayout: FrameLayout? = null
 
     private var selectedMark: PlaceMarkData? = null;
 
@@ -41,6 +41,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         createMap(null)
     }
 
+    fun enableProgress(active: Boolean){
+        if (active) {
+            llyInfo?.visibility =  View.GONE
+            frmLayout?.visibility =  View.GONE
+            progress?.visibility =  View.VISIBLE
+        } else {
+            llyInfo?.visibility =  View.VISIBLE
+            frmLayout?.visibility =  View.VISIBLE
+            progress?.visibility =  View.GONE
+        }
+    }
+
     private fun loadArgments(){
         val it = intent
         var data = it.getSerializableExtra("data")
@@ -50,6 +62,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun bindControls(){
+        frmLayout = findViewById(R.id.frameFragmentLayout)
+        progress = findViewById(R.id.progress)
         llyInfo = findViewById(R.id.llyInfo);
         lblName = findViewById(R.id.lblName);
         lblLocation = findViewById(R.id.lblLocation);
@@ -58,6 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         btnHide!!.setOnClickListener({
             llyInfo!!.setVisibility(View.GONE);
         })
+        enableProgress(true)
     }
 
     private fun createMap(location: LatLng?) {
@@ -150,6 +165,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         } catch (ex: Exception){
             LogHelper.addException(ex, "MapsActivity")
+        } finally {
+            enableProgress(false)
         }
     }
 

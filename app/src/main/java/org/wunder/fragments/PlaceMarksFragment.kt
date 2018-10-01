@@ -103,12 +103,10 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
                 false
             }
         }
-        enableProgress(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val layout = inflater.inflate(R.layout.fragment_marks, container, false)
-        bindControls(layout!!)
+    private fun loadList(){
+        enableProgress(true)
         PlaceMarksService.marks(object: OnDownloadListener<PlaceMarksData> {
             override fun error(ex: Exception) {
                 enableProgress(false)
@@ -121,6 +119,11 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
                 })
             }
         })
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val layout = inflater.inflate(R.layout.fragment_marks, container, false)
+        bindControls(layout!!)
         return layout
     }
 
@@ -128,6 +131,8 @@ class PlaceMarksFragment : Fragment(), org.wunder.interfaces.OnItemSelectedListe
         super.onAttach(context)
         if (context is OnPlaceMarksListener) {
             listener = context
+            loadList()
+
         } else {
             throw RuntimeException(context.toString() + " must implement OnPlaceMarksListener")
         }
